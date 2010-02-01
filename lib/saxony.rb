@@ -5,9 +5,13 @@ class Saxony
   class Document < Nokogiri::XML::SAX::Document
     attr_reader :total_count, :granularity
     def initialize(element, granularity, &processor)
+      @start_time = Time.now
       @element, @processor = element, processor
       @granularity, @total_count = granularity, 0
       reset
+    end
+    def elapsed_time
+      Time.now - @start_time
     end
     def start_element(element, attributes)
       if element == @element.to_s
@@ -44,7 +48,7 @@ class Saxony
       @doc ||= Nokogiri::XML(@xml)
     end
     def reset
-      @xml, @count, @doc = StringIO.new, 0, nil
+      @xml, @count, @doc, @start_time = StringIO.new, 0, nil, Time.now
     end
     def to_otag(name, attributes=[])
       t = name
@@ -77,12 +81,10 @@ end
 #STDERR.print '.' if @samples % 5000 == 0
 
 if $0 == __FILE__
-  sax = Saxony.new :Listing, 10000
-  start = Time.now
+  sax = Saxony.new :Listing, 1000
+
   sax.parse ARGV do
-    elapsed = Time.now - start
-    p [total_count, doc.xpath("//Listing").size, elapsed.to_f]
-    start = Time.now
+    p [total_count, doc.xpath("//Listing").size, elapsed_time.to_f]
 #    p 
   end
 end
