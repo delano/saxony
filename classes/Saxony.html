@@ -45,11 +45,11 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000002">new</a></li>
+              <li><a href="#M000001">new</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000003">parse</a></li>
+              <li><a href="#M000002">parse</a></li>
             </ol>
           </div>
           <div id='section'>
@@ -64,7 +64,7 @@
                   <tr class='top-aligned-row context-row'>
                     <td class='context-item-name'>VERSION</td>
                     <td>=</td>
-                    <td class='context-item-value'>&quot;0.1.0&quot;.freeze unless defined?(Saxony::VERSION)</td>
+                    <td class='context-item-value'>&quot;0.1.1&quot;.freeze unless defined?(Saxony::VERSION)</td>
                   </tr>
                 </table>
               </div>
@@ -88,22 +88,22 @@
             </div>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='method public-class' id='method-M000002'>
-                <a name='M000002'>      </a>
+              <div class='method public-class' id='method-M000001'>
+                <a name='M000001'>      </a>
                 <div class='synopsis'>
                   <span class='name'>new</span>
                   <span class='arguments'>(element, granularity=1000)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000002-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 93</span>&#x000A;93:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">granularity</span>=<span class="ruby-value">1000</span>)&#x000A;94:     <span class="ruby-ivar">@element</span>, <span class="ruby-ivar">@granularity</span> = <span class="ruby-identifier">element</span>, <span class="ruby-identifier">granularity</span>&#x000A;95:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000001-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 84</span>&#x000A;84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">granularity</span>=<span class="ruby-value">1000</span>)&#x000A;85:     <span class="ruby-ivar">@element</span>, <span class="ruby-ivar">@granularity</span> = <span class="ruby-identifier">element</span>, <span class="ruby-identifier">granularity</span>&#x000A;86:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
-              <div class='method public-instance' id='method-M000003'>
-                <a name='M000003'>      </a>
+              <div class='method public-instance' id='method-M000002'>
+                <a name='M000002'>      </a>
                 <div class='synopsis'>
                   <span class='name'>parse</span>
                   <span class='arguments'>(*sources, &amp;blk)</span>
@@ -116,10 +116,10 @@
                   </ul>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000003-source'>     <span class="ruby-comment cmt"># File lib/saxony.rb, line 98</span>&#x000A; 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span> <span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>&#x000A; 99:     <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">flatten!</span>&#x000A;100:     <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">src</span><span class="ruby-operator">|</span>&#x000A;101:       <span class="ruby-identifier">saxdoc</span> = <span class="ruby-constant">Saxony</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@element</span>, <span class="ruby-ivar">@granularity</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>&#x000A;102:       <span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">SAX</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">saxdoc</span>)&#x000A;103:       <span class="ruby-identifier">xml</span> = (<span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">src</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">src</span>)) <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">src</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">src</span>&#x000A;104:       <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">xml</span>&#x000A;105:     <span class="ruby-keyword kw">end</span>&#x000A;106:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000002-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 89</span>&#x000A;89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span> <span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>&#x000A;90:     <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">flatten!</span>&#x000A;91:     <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">src</span><span class="ruby-operator">|</span>&#x000A;92:       <span class="ruby-identifier">saxdoc</span> = <span class="ruby-constant">Saxony</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@element</span>, <span class="ruby-ivar">@granularity</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>&#x000A;93:       <span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">SAX</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">saxdoc</span>)&#x000A;94:       <span class="ruby-identifier">xml</span> = (<span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">src</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">src</span>)) <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">src</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">src</span>&#x000A;95:       <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">xml</span>&#x000A;96:     <span class="ruby-keyword kw">end</span>&#x000A;97:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
