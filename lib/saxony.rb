@@ -3,9 +3,10 @@ require 'stringio'
 
 
 class Saxony 
-  VERSION = "0.1.1".freeze unless defined?(Saxony::VERSION)
+  VERSION = "0.1.2".freeze unless defined?(Saxony::VERSION)
   
   class Document < Nokogiri::XML::SAX::Document
+    attr_accessor :path
     attr_reader :total_count, :granularity
     def initialize(element, granularity, &processor)
       @root_element = nil
@@ -59,7 +60,7 @@ class Saxony
       reset
     end
     def reset
-      @xml = nil
+      @xml, @path = nil, nil
       @buffer, @count, @doc, @start_time = StringIO.new, 0, nil, Time.now
     end
     def to_otag(name, attributes=[])
@@ -91,11 +92,31 @@ class Saxony
     sources.each do |src|
       saxdoc = Saxony::Document.new @element, @granularity, &blk
       parser = Nokogiri::XML::SAX::Parser.new(saxdoc)
-      xml = (String === src && File.exists?(src)) ? File.open(src) : src
+      if (String === src && File.exists?(src)) 
+        xml = File.open(src) 
+        saxdoc.path = src
+      else
+        xml = src
+        saxdoc.path = src.class.to_s
+      end
       parser.parse xml
     end
   end
 end
+
+class Array
+  def saxony_chunk(number_of_chunks)
+    chunks = (1..number_of_chunks).collect { [] }
+    while self.any?
+      chunks.each do |a_chunk|
+        a_chunk << self.shift if self.any?
+      end
+    end
+    chunks
+  end
+  alias_method :chunk, :saxony_chunk unless method_defined? :chunk
+end
+
 
 #STDERR.print '.' if @samples % 5000 == 0
 
