@@ -20,7 +20,13 @@
   # = MANIFEST =
   # git ls-files
   s.files = %w(
-  
+  CHANGES.txt
+  LICENSE.txt
+  README.md
+  Rakefile
+  Rudyfile
+  lib/saxony.rb
+  saxony.gemspec
   )
 
   

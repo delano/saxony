@@ -14,6 +14,8 @@ class Array
 end
 
 class Saxony 
+  VERSION = "0.1.0".freeze unless defined?(Saxony::VERSION)
+  
   class Document < Nokogiri::XML::SAX::Document
     attr_reader :total_count, :granularity
     def initialize(element, granularity, &processor)
