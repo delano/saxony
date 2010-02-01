@@ -1,5 +1,9 @@
 SAXONY, CHANGES
 
+#### 0.1.3 (2010-02-01) ####
+
+* FIXED: Don't blank out path between batches
+
 #### 0.1.2 (2010-02-01) ####
 
 * ADDED: Keep track of file path 

@@ -3,7 +3,7 @@ require 'stringio'
 
 
 class Saxony 
-  VERSION = "0.1.2".freeze unless defined?(Saxony::VERSION)
+  VERSION = "0.1.3".freeze unless defined?(Saxony::VERSION)
   
   class Document < Nokogiri::XML::SAX::Document
     attr_accessor :path
@@ -60,7 +60,7 @@ class Saxony
       reset
     end
     def reset
-      @xml, @path = nil, nil
+      @xml = nil
       @buffer, @count, @doc, @start_time = StringIO.new, 0, nil, Time.now
     end
     def to_otag(name, attributes=[])
