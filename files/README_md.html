@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>File: README.md [Parse gigantic XML files with pleasure and ease.]</title>
+    <title>File: README.md [Parse gigantic XML files with pleasure and a without running out of memory.]</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-01-31 23:51:24 -0500</span>
+          <span class='datetime'>2010-02-01 12:43:17 -0500</span>
         </div>
       </div>
       <div id='content'>
@@ -41,12 +41,13 @@
             ## <a href="../classes/Saxony.html">Saxony</a> - 0.1 ##
             </p>
             <p>
-            **Parse gigantic XML files with pleasure and ease.**
+            **Parse gigantic XML files with pleasure and a without running out of
+            memory.**
             </p>
             <p>
             ## Example ##
             </p>
-            <pre>sax = Saxony.new :SomeObject, 1000&#x000A;sax.parse 'path/2/huge.xml' do&#x000A;  total_count     # =&gt; Total number of SomeObjects processed&#x000A;  doc             # =&gt; Nokogiri object for 1000 SomeObject&#x000A;  elapsed_time    # =&gt; time processing current batch&#x000A;end</pre>
+            <pre>sax = Saxony.new :SomeObject, 1000&#x000A;sax.parse 'path/2/huge.xml' do&#x000A;  total_count     # =&gt; Total number of SomeObjects processed&#x000A;  doc             # =&gt; Nokogiri object for 1000 SomeObjects&#x000A;  elapsed_time    # =&gt; time processing current batch&#x000A;  path            # =&gt; Current file being processed&#x000A;  xml             # =&gt; The XML containing 1000 SomeObjects&#x000A;end</pre>
             <p>
             ## Credits
             </p>
@@ -58,6 +59,11 @@
             <p>
             ## Thanks
             </p>
+            <ul>
+            <li>[Nokogiri](<a href="http://nokogiri.org/">nokogiri.org/</a>)
+            
+            </li>
+            </ul>
             <p>
             ## License
             </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Saxony::Document [Parse gigantic XML files with pleasure and ease.]</title>
+    <title>: Saxony::Document [Parse gigantic XML files with pleasure and a without running out of memory.]</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
@@ -70,6 +70,11 @@
                     <td class='context-item-desc'></td>
                   </tr>
                   <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>path</td>
+                    <td class='context-item-value'>[RW]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
                     <td class='context-item-name'>total_count</td>
                     <td class='context-item-value'>[R]</td>
                     <td class='context-item-desc'></td>
@@ -89,7 +94,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000003-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 10</span>&#x000A;10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">granularity</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">processor</span>)&#x000A;11:       <span class="ruby-ivar">@root_element</span> = <span class="ruby-keyword kw">nil</span>&#x000A;12:       <span class="ruby-ivar">@start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>&#x000A;13:       <span class="ruby-ivar">@element</span>, <span class="ruby-ivar">@processor</span> = <span class="ruby-identifier">element</span>, <span class="ruby-identifier">processor</span>&#x000A;14:       <span class="ruby-ivar">@granularity</span>, <span class="ruby-ivar">@total_count</span> = <span class="ruby-identifier">granularity</span>, <span class="ruby-value">0</span>&#x000A;15:       <span class="ruby-identifier">reset</span>&#x000A;16:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000003-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 11</span>&#x000A;11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">granularity</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">processor</span>)&#x000A;12:       <span class="ruby-ivar">@root_element</span> = <span class="ruby-keyword kw">nil</span>&#x000A;13:       <span class="ruby-ivar">@start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>&#x000A;14:       <span class="ruby-ivar">@element</span>, <span class="ruby-ivar">@processor</span> = <span class="ruby-identifier">element</span>, <span class="ruby-identifier">processor</span>&#x000A;15:       <span class="ruby-ivar">@granularity</span>, <span class="ruby-ivar">@total_count</span> = <span class="ruby-identifier">granularity</span>, <span class="ruby-value">0</span>&#x000A;16:       <span class="ruby-identifier">reset</span>&#x000A;17:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
@@ -103,7 +108,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000009-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 41</span>&#x000A;41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cdata_block</span>(<span class="ruby-identifier">text</span>)&#x000A;42:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">to_cdata</span>(<span class="ruby-identifier">text</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;43:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000009-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 42</span>&#x000A;42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cdata_block</span>(<span class="ruby-identifier">text</span>)&#x000A;43:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">to_cdata</span>(<span class="ruby-identifier">text</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;44:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000008'>
@@ -116,7 +121,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000008-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 38</span>&#x000A;38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">characters</span>(<span class="ruby-identifier">text</span>)&#x000A;39:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;40:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000008-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 39</span>&#x000A;39:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">characters</span>(<span class="ruby-identifier">text</span>)&#x000A;40:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;41:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000006'>
@@ -129,7 +134,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000006-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 24</span>&#x000A;24:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">doc</span>&#x000A;25:       <span class="ruby-ivar">@doc</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>(<span class="ruby-identifier">xml</span>)&#x000A;26:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000006-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 25</span>&#x000A;25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">doc</span>&#x000A;26:       <span class="ruby-ivar">@doc</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>(<span class="ruby-identifier">xml</span>)&#x000A;27:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000004'>
@@ -142,7 +147,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000004-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000004-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 18</span>&#x000A;18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">elapsed_time</span>&#x000A;19:       <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@start_time</span>&#x000A;20:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000004-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 19</span>&#x000A;19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">elapsed_time</span>&#x000A;20:       <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@start_time</span>&#x000A;21:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000011'>
@@ -155,7 +160,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000011-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 52</span>&#x000A;52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_document</span>&#x000A;53:       <span class="ruby-identifier">process_objects</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@buffer</span>.<span class="ruby-identifier">pos</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>&#x000A;54:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000011-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 53</span>&#x000A;53:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_document</span>&#x000A;54:       <span class="ruby-identifier">process_objects</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@buffer</span>.<span class="ruby-identifier">pos</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>&#x000A;55:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000010'>
@@ -168,7 +173,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000010-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 44</span>&#x000A;44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_element</span>(<span class="ruby-identifier">element</span>)&#x000A;45:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">to_ctag</span>(<span class="ruby-identifier">element</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;46:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">to_s</span>&#x000A;47:         <span class="ruby-ivar">@collect</span> = <span class="ruby-keyword kw">false</span>&#x000A;48:         <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">$/</span>&#x000A;49:         <span class="ruby-identifier">process_objects</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@granularity</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@granularity</span>&#x000A;50:       <span class="ruby-keyword kw">end</span>&#x000A;51:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000010-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 45</span>&#x000A;45:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_element</span>(<span class="ruby-identifier">element</span>)&#x000A;46:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">to_ctag</span>(<span class="ruby-identifier">element</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;47:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">to_s</span>&#x000A;48:         <span class="ruby-ivar">@collect</span> = <span class="ruby-keyword kw">false</span>&#x000A;49:         <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">$/</span>&#x000A;50:         <span class="ruby-identifier">process_objects</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@granularity</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@granularity</span>&#x000A;51:       <span class="ruby-keyword kw">end</span>&#x000A;52:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000007'>
@@ -181,7 +186,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000007-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 28</span>&#x000A;28:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start_element</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">attributes</span>)&#x000A;29:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">to_s</span>&#x000A;30:         <span class="ruby-ivar">@count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@total_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;31:         <span class="ruby-ivar">@collect</span> = <span class="ruby-keyword kw">true</span> &#x000A;32:         <span class="ruby-ivar">@root_element</span> = <span class="ruby-value str">'SAXONYDOC'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@root_element</span>.<span class="ruby-identifier">nil?</span>&#x000A;33:       <span class="ruby-keyword kw">else</span>&#x000A;34:         <span class="ruby-ivar">@root_element</span> = <span class="ruby-identifier">element</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@root_element</span>.<span class="ruby-identifier">nil?</span>&#x000A;35:       <span class="ruby-keyword kw">end</span>&#x000A;36:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">to_otag</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">attributes</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;37:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 29</span>&#x000A;29:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start_element</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">attributes</span>)&#x000A;30:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@element</span>.<span class="ruby-identifier">to_s</span>&#x000A;31:         <span class="ruby-ivar">@count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@total_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;32:         <span class="ruby-ivar">@collect</span> = <span class="ruby-keyword kw">true</span> &#x000A;33:         <span class="ruby-ivar">@root_element</span> = <span class="ruby-value str">'SAXONYDOC'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@root_element</span>.<span class="ruby-identifier">nil?</span>&#x000A;34:       <span class="ruby-keyword kw">else</span>&#x000A;35:         <span class="ruby-ivar">@root_element</span> = <span class="ruby-identifier">element</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@root_element</span>.<span class="ruby-identifier">nil?</span>&#x000A;36:       <span class="ruby-keyword kw">end</span>&#x000A;37:       <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">to_otag</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">attributes</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collect</span>&#x000A;38:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000005'>
@@ -194,7 +199,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000005-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 21</span>&#x000A;21:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">xml</span>&#x000A;22:       <span class="ruby-ivar">@xml</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;&lt;#{@root_element}&gt;#{@buffer.string}&lt;/#{@root_element}&gt;&quot;</span>&#x000A;23:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000005-source'>    <span class="ruby-comment cmt"># File lib/saxony.rb, line 22</span>&#x000A;22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">xml</span>&#x000A;23:       <span class="ruby-ivar">@xml</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;&lt;#{@root_element}&gt;#{@buffer.string}&lt;/#{@root_element}&gt;&quot;</span>&#x000A;24:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
