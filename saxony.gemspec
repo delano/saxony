@@ -1,7 +1,7 @@
 @spec = Gem::Specification.new do |s|
   s.name = "saxony"
   s.rubyforge_project = 'bone'
-  s.version = "0.1.0"
+  s.version = "0.1.1"
   s.summary = "Parse gigantic XML files with pleasure and ease."
   s.description = s.summary
   s.author = "Delano Mandelbaum"
