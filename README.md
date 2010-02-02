@@ -1,4 +1,4 @@
-## Saxony - 0.1 ##
+## Saxony - 0.2 ##
 
 **Parse gigantic XML files with pleasure and without running out of memory.**
 
@@ -6,11 +6,11 @@
     
     sax = Saxony.new :SomeObject, 1000
     sax.parse 'path/2/huge.xml' do
-      total_count     # => Total number of SomeObjects processed
+      xml             # => The XML containing 1000 SomeObjects
       doc             # => Nokogiri object for 1000 SomeObjects
+      total_count     # => Total number of SomeObjects processed
       elapsed_time    # => time processing current batch
       path            # => Current file being processed
-      xml             # => The XML containing 1000 SomeObjects
     end
       
 ## Credits

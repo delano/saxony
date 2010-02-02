@@ -3,7 +3,7 @@ require 'stringio'
 
 
 class Saxony 
-  VERSION = "0.1.3".freeze unless defined?(Saxony::VERSION)
+  VERSION = "0.2.0".freeze unless defined?(Saxony::VERSION)
   
   class Document < Nokogiri::XML::SAX::Document
     attr_accessor :path
@@ -91,13 +91,13 @@ class Saxony
     sources.flatten!
     @saxdoc = Saxony::Document.new @element, @granularity, &blk
     sources.each do |src|
-      parser = Nokogiri::XML::SAX::Parser.new(saxdoc)
+      parser = Nokogiri::XML::SAX::Parser.new(@saxdoc)
       if (String === src && File.exists?(src)) 
         xml = File.open(src) 
-        saxdoc.path = src
+        @saxdoc.path = src
       else
         xml = src
-        saxdoc.path = src.class
+        @saxdoc.path = src.class
       end
       parser.parse xml
     end
@@ -105,6 +105,25 @@ class Saxony
   
   def total_count
     @saxdoc.total_count
+  end
+  
+  
+  def Saxony.fork(procs,*paths,&logic)
+    puts
+    paths.flatten!
+    if procs > 1
+      path_chunks = paths.chunk(procs)
+      procs.times do |idx|
+        proc_paths = path_chunks[idx]
+        pid = Kernel.fork do
+          logic.call(proc_paths,idx)
+        end
+        puts "PID #{pid} (#{idx+1}/#{procs}): #{proc_paths.join(', ')}"
+      end
+    else
+      logic.call paths, 1
+    end
+    
   end
 end
 
