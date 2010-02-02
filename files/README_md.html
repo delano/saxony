@@ -31,23 +31,23 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-02-01 12:44:37 -0500</span>
+          <span class='datetime'>2010-02-02 10:10:40 -0500</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
             <p>
-            ## <a href="../classes/Saxony.html">Saxony</a> - 0.1 ##
+            ## <a href="../classes/Saxony.html">Saxony</a> - 0.2 ##
             </p>
             <p>
-            **Parse gigantic XML files with pleasure and a without running out of
+            **Parse gigantic XML files with pleasure and without running out of
             memory.**
             </p>
             <p>
             ## Example ##
             </p>
-            <pre>sax = Saxony.new :SomeObject, 1000&#x000A;sax.parse 'path/2/huge.xml' do&#x000A;  total_count     # =&gt; Total number of SomeObjects processed&#x000A;  doc             # =&gt; Nokogiri object for 1000 SomeObjects&#x000A;  elapsed_time    # =&gt; time processing current batch&#x000A;  path            # =&gt; Current file being processed&#x000A;  xml             # =&gt; The XML containing 1000 SomeObjects&#x000A;end</pre>
+            <pre>sax = Saxony.new :SomeObject, 1000&#x000A;sax.parse 'path/2/huge.xml' do&#x000A;  xml             # =&gt; The XML containing 1000 SomeObjects&#x000A;  doc             # =&gt; Nokogiri object for 1000 SomeObjects&#x000A;  total_count     # =&gt; Total number of SomeObjects processed&#x000A;  elapsed_time    # =&gt; time processing current batch&#x000A;  path            # =&gt; Current file being processed&#x000A;end</pre>
             <p>
             ## Credits
             </p>
