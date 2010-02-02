@@ -89,8 +89,8 @@ class Saxony
   # * sources can be a list of file paths, IO objects, or XML strings
   def parse *sources, &blk
     sources.flatten!
+    @saxdoc = Saxony::Document.new @element, @granularity, &blk
     sources.each do |src|
-      saxdoc = Saxony::Document.new @element, @granularity, &blk
       parser = Nokogiri::XML::SAX::Parser.new(saxdoc)
       if (String === src && File.exists?(src)) 
         xml = File.open(src) 
@@ -101,6 +101,10 @@ class Saxony
       end
       parser.parse xml
     end
+  end
+  
+  def total_count
+    @saxdoc.total_count
   end
 end
 
