@@ -97,7 +97,7 @@ class Saxony
         saxdoc.path = src
       else
         xml = src
-        saxdoc.path = src.class.to_s
+        saxdoc.path = src.class
       end
       parser.parse xml
     end

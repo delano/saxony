@@ -1,6 +1,6 @@
 ## Saxony - 0.1 ##
 
-**Parse gigantic XML files with pleasure and a without running out of memory.**
+**Parse gigantic XML files with pleasure and without running out of memory.**
 
 ## Example ##
     
