@@ -3,7 +3,7 @@ require 'stringio'
 
 
 class Saxony 
-  VERSION = "0.3.1".freeze unless defined?(Saxony::VERSION)
+  VERSION = "0.3.2".freeze unless defined?(Saxony::VERSION)
   
   class Document < Nokogiri::XML::SAX::Document
     attr_accessor :path
