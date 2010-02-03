@@ -31,14 +31,14 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-02-02 11:34:21 -0500</span>
+          <span class='datetime'>2010-02-03 15:30:55 -0500</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
             <p>
-            ## <a href="../classes/Saxony.html">Saxony</a> - 0.2 ##
+            ## <a href="../classes/Saxony.html">Saxony</a> - 0.3 ##
             </p>
             <p>
             **Parse gigantic XML files with pleasure and without running out of
@@ -47,7 +47,7 @@
             <p>
             ## Example ##
             </p>
-            <pre>sax = Saxony.new :SomeObject, 1000&#x000A;sax.parse 'path/2/huge.xml' do&#x000A;  xml             # =&gt; The XML containing 1000 SomeObjects&#x000A;  doc             # =&gt; Nokogiri object for 1000 SomeObjects&#x000A;  total_count     # =&gt; Total number of SomeObjects processed&#x000A;  elapsed_time    # =&gt; time processing current batch&#x000A;  path            # =&gt; Current file being processed&#x000A;end</pre>
+            <pre>sax = Saxony.new :SomeObject, 1000&#x000A;sax.parse 'path/2/huge.xml' do&#x000A;  xml             # =&gt; The XML containing 1000 SomeObjects&#x000A;  doc             # =&gt; Nokogiri object for 1000 SomeObjects&#x000A;  total_count     # =&gt; Total number of SomeObjects processed&#x000A;  elapsed_time    # =&gt; time processing current batch&#x000A;  path            # =&gt; Current file being processed&#x000A;  fh              # =&gt; Output file handle&#x000A;end&#x000A;&#x000A;# Process multiple files in parallel using Kernel.proc.&#x000A;# By default&#x000A;Saxony.fork ['path/2/huge.xml', 'path/2/huger.xml'] do&#x000A;  # Inside the block, everything is the&#x000A;  # same as calling sax.parse above.&#x000A;  doc.xpath('//Listing').each do |l&#x000A;    type = listing.xpath(&quot;Type&quot;).first.text&#x000A;    fh.puts listing if type == 'some_criteria'&#x000A;  end&#x000A;end</pre>
             <p>
             ## Credits
             </p>
