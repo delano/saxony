@@ -1,5 +1,9 @@
 SAXONY, CHANGES
 
+#### 0.3.1 (2010-02-03) ####
+
+* FIXED: Oops! Bad paste :[
+
 #### 0.3.0 (2010-02-03) ####
 
 * CHANGE: Cleaner Saxony.fork syntax

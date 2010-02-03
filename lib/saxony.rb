@@ -3,7 +3,7 @@ require 'stringio'
 
 
 class Saxony 
-  VERSION = "0.3.0".freeze unless defined?(Saxony::VERSION)
+  VERSION = "0.3.1".freeze unless defined?(Saxony::VERSION)
   
   class Document < Nokogiri::XML::SAX::Document
     attr_accessor :path
@@ -122,7 +122,7 @@ class Saxony
     opts = {
       :procs => 2,
       :batch => 1000
-    }.merge!
+    }.merge! opts
     paths.flatten!
     sax = Saxony.new opts
     if opts[:procs] > 1
