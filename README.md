@@ -1,4 +1,4 @@
-## Saxony - 0.2 ##
+## Saxony - 0.3 ##
 
 **Parse gigantic XML files with pleasure and without running out of memory.**
 
@@ -11,8 +11,21 @@
       total_count     # => Total number of SomeObjects processed
       elapsed_time    # => time processing current batch
       path            # => Current file being processed
+      fh              # => Output file handle
     end
-      
+    
+    # Process multiple files in parallel using Kernel.proc.
+    # By default
+    Saxony.fork ['path/2/huge.xml', 'path/2/huger.xml'] do
+      # Inside the block, everything is the  
+      # same as calling sax.parse above. 
+      doc.xpath('//Listing').each do |l
+        type = listing.xpath("Type").first.text
+        fh.puts listing if type == 'some_criteria'
+      end
+    end
+    
+    
 ## Credits
 
 * Delano Mandelbaum (http://solutious.com)

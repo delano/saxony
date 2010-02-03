@@ -3,19 +3,26 @@ require 'stringio'
 
 
 class Saxony 
-  VERSION = "0.2.0".freeze unless defined?(Saxony::VERSION)
+  VERSION = "0.3.0".freeze unless defined?(Saxony::VERSION)
   
   class Document < Nokogiri::XML::SAX::Document
     attr_accessor :path
-    attr_reader :total_count, :granularity
-    def initialize(element, granularity, &processor)
+    attr_reader :total_count, :granularity, :suffix
+    def initialize(element, granularity, suffix=nil, idx=nil, &processor)
       @root_element = nil
+      @suffix = suffix || '-saxony'
       @start_time = Time.now
-      @element, @processor = element, processor
+      @element, @processor, @idx = element, processor, idx
       @granularity, @total_count = granularity, 0
       reset
     end
-
+    def idx
+      @idx ||= Thread.current.object_id
+    end
+    def fh
+      @path.split
+      @fh ||= File.open([path, @suffix].join('-'), 'w')
+    end
     def elapsed_time
       Time.now - @start_time
     end
@@ -25,7 +32,6 @@ class Saxony
     def doc
       @doc ||= Nokogiri::XML(xml)
     end
-
     def start_element(element, attributes)
       if element == @element.to_s
         @count += 1 and @total_count += 1
@@ -52,10 +58,17 @@ class Saxony
     end
     def end_document
       process_objects unless @buffer.pos <= 0
+      fh.puts $/, "</#{@root_element}>"
+      fh.close
     end
 
   private
     def process_objects
+      unless @started
+        puts "#{idx}: #{fh.path}"
+        fh.puts "<#{@root_element}>" 
+        @started = true
+      end
       self.instance_eval &@processor
       reset
     end
@@ -81,47 +94,48 @@ class Saxony
     end
   end
   
-  attr_reader :granularity, :element
-  def initialize(element, granularity=1000)
-    @element, @granularity = element, granularity
+  attr_reader :opts, :total_count
+  def initialize(opts={})
+    @opts = opts
+    @total_count = 0
   end
   
   # * sources can be a list of file paths, IO objects, or XML strings
   def parse *sources, &blk
     sources.flatten!
-    @saxdoc = Saxony::Document.new @element, @granularity, &blk
     sources.each do |src|
-      parser = Nokogiri::XML::SAX::Parser.new(@saxdoc)
+      saxdoc = Saxony::Document.new @opts[:element], @opts[:batch], @opts[:suffix], &blk
+      parser = Nokogiri::XML::SAX::Parser.new(saxdoc)
       if (String === src && File.exists?(src)) 
         xml = File.open(src) 
-        @saxdoc.path = src
+        saxdoc.path = src
       else
         xml = src
-        @saxdoc.path = src.class
+        saxdoc.path = src.class
       end
       parser.parse xml
+      @total_count += saxdoc.total_count
     end
   end
   
-  def total_count
-    @saxdoc.total_count
-  end
-  
-  
-  def Saxony.fork(procs,*paths,&logic)
-    puts
+  def Saxony.fork(paths, opts={}, &logic)
+    opts = {
+      :procs => 2,
+      :batch => 1000
+    }.merge!
     paths.flatten!
-    if procs > 1
-      path_chunks = paths.chunk(procs)
-      procs.times do |idx|
+    sax = Saxony.new opts
+    if opts[:procs] > 1
+      path_chunks = paths.chunk(opts[:procs])
+      opts[:procs].times do |idx|
         proc_paths = path_chunks[idx]
         pid = Kernel.fork do
-          logic.call(proc_paths,idx)
+          sax.parse *proc_paths, &logic
         end
-        puts "PID #{pid} (#{idx+1}/#{procs}): #{proc_paths.join(', ')}"
+        puts "PID #{pid} (#{idx+1}/#{opts[:procs]}): #{proc_paths.join(', ')}"
       end
     else
-      logic.call paths, 1
+      sax.parse *paths, &logic
     end
     
   end

@@ -1,5 +1,10 @@
 SAXONY, CHANGES
 
+#### 0.3.0 (2010-02-03) ####
+
+* CHANGE: Cleaner Saxony.fork syntax
+* ADDED: Built-in support for one output file per input file. 
+
 #### 0.2.0 (2010-02-02) ####
 
 * ADDED: Saxony.fork
