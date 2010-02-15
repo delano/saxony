@@ -1,5 +1,11 @@
 SAXONY, CHANGES
 
+* TODO: Add with_root => false
+
+#### 0.3.3 (2010-02-15) ###############################
+
+* CHANGE: Remove hanna dependency
+
 #### 0.3.1 (2010-02-03) ####
 
 * FIXED: Oops! Bad paste :[
